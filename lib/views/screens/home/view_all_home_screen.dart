@@ -19,6 +19,7 @@ class ViewAllHomeScreen extends StatelessWidget {
 
     ];
     return Scaffold(
+
       body: Column(
         children: [
           Container(

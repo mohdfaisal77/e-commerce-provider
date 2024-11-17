@@ -1,6 +1,7 @@
 import 'package:ecommerce/custom_widgets/back_btn.dart';
 import 'package:ecommerce/custom_widgets/custom_elevated_button.dart';
 import 'package:ecommerce/helper/app_color/app_color.dart';
+import 'package:ecommerce/views/items/shop/womens_top.dart';
 import 'package:flutter/material.dart';
 class ViewAllCategoriesScreen extends StatelessWidget {
   const ViewAllCategoriesScreen({super.key});
@@ -27,7 +28,10 @@ class ViewAllCategoriesScreen extends StatelessWidget {
         centerTitle: true,
         leading: BackBtn(),
         actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.search)),
+          IconButton(onPressed: () {
+
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>WomensTop()));
+          }, icon: Icon(Icons.search)),
         ],
       ),
       body: SafeArea(
@@ -41,20 +45,36 @@ class ViewAllCategoriesScreen extends StatelessWidget {
             //   }),
             // ),
             SizedBox(height: 30),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 12),
-              child: Text(
-                "Choose Category",
-                style: TextStyle(
-                  color: Color(0xff9B9B9B),
-                  fontWeight: FontWeight.w400,
-                  fontSize: 16,
-                ),
-              ),
-            ),
+
+
+             Padding(padding: EdgeInsets.symmetric(horizontal: 12),
+ child:  Align(
+   alignment: Alignment.centerLeft,
+   child: Text(
+     "Choose Category",
+     style: TextStyle(
+       color: Color(0xff9B9B9B),
+       fontWeight: FontWeight.w400,
+       fontSize: 16,
+     ),
+   ),
+ ),
+             )
+,
             Expanded(child: ListView.separated(itemBuilder: (_,index){
 return ListTile(
-  title:Text( 'Hello'),
+  title: Text(
+    categories[index].toString(),
+    style: TextStyle(
+      fontWeight: FontWeight.w500,
+      fontSize: 16,
+      color: Color(0xff222222),
+    ),
+  ),
+  dense: true,
+  onTap: () {},
+  contentPadding: EdgeInsets.symmetric(horizontal: 13),
+  // minTileHeight: 20,
 );
             }, separatorBuilder: (_, index) => Divider(
               color: Color(0xff9B9B9B).withOpacity(.5),

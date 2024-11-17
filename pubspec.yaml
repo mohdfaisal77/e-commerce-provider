@@ -66,6 +66,7 @@ flutter:
   assets:
      - assets/images/common/images/
      - assets/images/common/images/women_images/clothes.png
+     - assets/images/common/images/women_images/photo.png
      - assets/images/common/images/women_images/new.png
      - assets/images/common/images/women_images/accesories.png
      - assets/images/common/images/women_images/shoes.png
