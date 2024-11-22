@@ -1,6 +1,8 @@
 import 'package:ecommerce/custom_widgets/back_btn.dart';
+import 'package:ecommerce/helper/app_color/app_color.dart';
 import 'package:ecommerce/views/items/home/view_all_grid_items.dart';
 import 'package:ecommerce/views/items/shop/view_all_list_items.dart';
+import 'package:ecommerce/views/screens/filters/filter_screen.dart';
 import 'package:flutter/material.dart';
 
 class WomensTop extends StatefulWidget {
@@ -29,13 +31,28 @@ class _WomensTopState extends State<WomensTop> {
     "assets/images/utils/view_all_img2.png",
   ];
 
+  final List<String> filters=[
+    "Popular",
+    "Newest"
+  ];
+
+  final List<String> prices_level=[
+    "Price: lowest to high",
+    "Price: highest to low"
+  ];
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         elevation: .7,
         shadowColor: Colors.white.withOpacity(.25),
         leading: const BackBtn(),
+        title: _showgrid ?  Text(
+          "Women's Top",
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
+        ) : null,
+        centerTitle: true,
         actions: <Widget>[
           IconButton(
             onPressed: () {
@@ -49,9 +66,9 @@ class _WomensTopState extends State<WomensTop> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Padding(
+           Padding(
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-            child: Text(
+            child: _showgrid ? null : Text(
               "Women's Top",
               style: TextStyle(
                   color: Colors.black,
@@ -124,7 +141,25 @@ class _WomensTopState extends State<WomensTop> {
                                   fontSize: 20,
                                 ),
                               ),
-                              SizedBox(height: 200),
+                              SizedBox(height: 10),
+                         SizedBox(
+                           height: 100,
+                           child: ListView.builder(
+                               itemCount: filters.length,
+                               itemBuilder: (_,index){
+                           return InkWell(
+                             onTap: (){
+Navigator.push(context, MaterialPageRoute(builder: (context)=>FilterScreen()));
+                             },
+                             splashColor: AppColor.orangeIconColor,
+                             child: ListTile(
+
+                               title:Text(filters[index])
+                             ),
+                           );
+                           }),
+                         ),
+                              SizedBox(height: 20),
                             ],
                           ),
                         );
@@ -177,7 +212,24 @@ class _WomensTopState extends State<WomensTop> {
                                 fontSize: 20,
                               ),
                             ),
-                            SizedBox(height: 200),
+                            SizedBox(height: 10),
+                            SizedBox(
+                              height: 100,
+                              child: ListView.builder(
+                                  itemCount: prices_level.length,
+                                  itemBuilder: (_,index){
+                                    return InkWell(
+                                      splashColor: AppColor.orangeIconColor,
+                                      // focusColor: Colors.deepOrangeAccent,
+                                      onTap: (){},
+                                      child: ListTile(
+                                      
+                                          title:Text(prices_level[index])
+                                      ),
+                                    );
+                                  }),
+                            ),
+                            SizedBox(height: 20),
                           ],
                         ),
                       );
